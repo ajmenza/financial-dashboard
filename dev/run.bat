@@ -18,7 +18,7 @@ exit /b 1
 :start
 REM Start the development environment
 echo Starting Docker Compose for development...
-docker-compose -f docker-compose.dev.yml --env-file app.dev.env up --build
+docker-compose -f ../docker-compose.base.yml -f ../docker-compose.dev.yml --env-file ./app.dev.env up --build
 if errorlevel 1 (
     echo Failed to start Docker Compose. Exiting.
     exit /b 1
@@ -29,7 +29,7 @@ exit /b 0
 :stop
 REM Stop the development environment
 echo Stopping Docker Compose for development...
-docker-compose -f docker-compose.dev.yml --env-file app.dev.env down
+docker-compose -f ../docker-compose.base.yml -f ../docker-compose.dev.yml --env-file ./app.dev.env down
 if errorlevel 1 (
     echo Failed to stop Docker Compose. Exiting.
     exit /b 1
@@ -40,7 +40,7 @@ exit /b 0
 :clean
 REM Clean up the development environment
 echo Cleaning up Docker Compose for development...
-docker-compose -f docker-compose.dev.yml --env-file app.dev.env down -v --remove-orphans
+docker-compose -f ../docker-compose.base.yml -f ../docker-compose.dev.yml --env-file ./app.dev.env down -v --remove-orphans
 if errorlevel 1 (
     echo Failed to clean up Docker Compose. Exiting.
     exit /b 1
